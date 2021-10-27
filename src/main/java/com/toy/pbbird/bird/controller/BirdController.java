@@ -2,6 +2,7 @@ package com.toy.pbbird.bird.controller;
 
 import com.toy.pbbird.bird.dto.BirdDto;
 import com.toy.pbbird.bird.service.BirdService;
+import com.toy.pbbird.config.security.SecurityService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -34,7 +35,8 @@ public class BirdController {
     @PostMapping("/name")
     @ApiOperation(value = "새이름 저장")
     public ResponseEntity<BirdDto.Res> saveBirdName(@Valid @RequestBody BirdDto.Req req) {
-        return ResponseEntity.ok(birdService.saveBirdName(req));
+        String uid = SecurityService.getUid();
+        return ResponseEntity.ok(birdService.saveBirdName(uid, req));
     }
 
 }

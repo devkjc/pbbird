@@ -13,17 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class BirdService {
 
     private final BirdRepository birdRepository;
-    private final UserFeign userFeign;
 
     public Boolean birdNameDuplication(String birdName) {
         return birdRepository.countByBirdName(birdName) < 1;
     }
 
     @Transactional
-    public BirdDto.Res saveBirdName(BirdDto.Req req) {
-
-        String uid = userFeign.getUid();
-
+    public BirdDto.Res saveBirdName(String uid, BirdDto.Req req) {
         if (birdNameDuplication(req.getBirdName())) {
             return BirdDto.Res.of(birdRepository.save(req.toEntity(uid)));
         }else {
