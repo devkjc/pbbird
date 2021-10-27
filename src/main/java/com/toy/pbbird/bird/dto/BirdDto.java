@@ -1,7 +1,6 @@
 package com.toy.pbbird.bird.dto;
 
-import com.toy.pbuser.bird.domain.Bird;
-import com.toy.pbuser.user.domain.User;
+import com.toy.pbbird.bird.domain.Bird;
 import io.swagger.annotations.ApiModel;
 import lombok.Builder;
 import lombok.Getter;
