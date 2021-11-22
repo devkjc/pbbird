@@ -7,6 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BirdRepository extends JpaRepository<Bird, Long> {
 
-    Long countByBirdName(String birdName);
+    Long countByBirdNameAndUid(String birdName, String uId);
+
+    void deleteByUid(String uid);
 
 }
