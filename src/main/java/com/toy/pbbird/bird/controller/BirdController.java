@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/bird")
@@ -50,10 +51,11 @@ public class BirdController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/test")
-    @ApiOperation(value = "test")
-    public ResponseEntity<?> getTest() {
-        return ResponseEntity.ok(postBoxFeign.getPostBox());
+    @GetMapping("/")
+    @ApiOperation(value = "새 조회")
+    public ResponseEntity<List<BirdDto.Res>> getBirdList() {
+        String uid = SecurityService.getUid();
+        return ResponseEntity.ok(birdService.getBirdList(uid));
     }
 
 }

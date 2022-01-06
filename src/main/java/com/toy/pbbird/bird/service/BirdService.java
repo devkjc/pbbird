@@ -7,6 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 @RequiredArgsConstructor
 public class BirdService {
@@ -31,4 +34,8 @@ public class BirdService {
         birdRepository.deleteByUid(uid);
     }
 
+
+    public List<BirdDto.Res> getBirdList(String uid) {
+        return birdRepository.findByUid(uid).stream().map(BirdDto.Res::of).collect(Collectors.toList());
+    }
 }
