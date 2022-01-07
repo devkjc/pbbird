@@ -26,7 +26,6 @@ import java.util.List;
 public class BirdController {
 
     private final BirdService birdService;
-    private final PostBoxFeign postBoxFeign;
 
     @GetMapping("/name")
     @ApiOperation(value = "새이름 중복 검사")
@@ -51,7 +50,7 @@ public class BirdController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/")
+    @GetMapping
     @ApiOperation(value = "새 조회")
     public ResponseEntity<List<BirdDto.Res>> getBirdList() {
         String uid = SecurityService.getUid();
