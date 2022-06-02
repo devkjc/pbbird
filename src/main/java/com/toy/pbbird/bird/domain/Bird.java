@@ -27,6 +27,9 @@ public class Bird extends BaseTimeEntity {
 
     private String birdName;
 
+    @Builder.Default
+    private Double hourly = 60d;
+
     public void setBirdName(String birdName) {
         this.birdName = birdName;
     }
