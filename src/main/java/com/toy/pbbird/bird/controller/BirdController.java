@@ -1,9 +1,9 @@
 package com.toy.pbbird.bird.controller;
 
+import com.toy.pbbird.bird.domain.Bird;
 import com.toy.pbbird.bird.dto.BirdDto;
 import com.toy.pbbird.bird.service.BirdService;
 import com.toy.pbbird.config.security.SecurityService;
-import com.toy.pbbird.postbox.PostBoxFeign;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Pattern;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/bird")
@@ -51,10 +52,17 @@ public class BirdController {
     }
 
     @GetMapping
-    @ApiOperation(value = "새 조회")
+    @ApiOperation(value = "새 목록 조회")
     public ResponseEntity<List<BirdDto.Res>> getBirdList() {
         String uid = SecurityService.getUid();
         return ResponseEntity.ok(birdService.getBirdList(uid));
+    }
+
+    @GetMapping("/id/{birdId}")
+    @ApiOperation(value = "새 조회")
+    public ResponseEntity<Optional<Bird>> getBirdList(@PathVariable long birdId) {
+        String uid = SecurityService.getUid();
+        return ResponseEntity.ok(birdService.getBird(uid, birdId));
     }
 
 }

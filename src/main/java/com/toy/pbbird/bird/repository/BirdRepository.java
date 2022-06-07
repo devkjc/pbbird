@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface BirdRepository extends JpaRepository<Bird, Long> {
@@ -14,5 +15,7 @@ public interface BirdRepository extends JpaRepository<Bird, Long> {
     void deleteByUid(String uid);
 
     List<Bird> findByUid(String uid);
+
+    Optional<Bird> findByUidAndId(String uid, long birdId);
 
 }

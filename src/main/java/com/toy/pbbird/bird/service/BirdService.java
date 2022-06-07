@@ -1,5 +1,6 @@
 package com.toy.pbbird.bird.service;
 
+import com.toy.pbbird.bird.domain.Bird;
 import com.toy.pbbird.bird.dto.BirdDto;
 import com.toy.pbbird.bird.repository.BirdRepository;
 import com.toy.pbbird.common.exception.ProcessException;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -37,5 +39,9 @@ public class BirdService {
 
     public List<BirdDto.Res> getBirdList(String uid) {
         return birdRepository.findByUid(uid).stream().map(BirdDto.Res::of).collect(Collectors.toList());
+    }
+
+    public Optional<Bird> getBird(String uid, long birdId) {
+        return birdRepository.findByUidAndId(uid, birdId);
     }
 }
