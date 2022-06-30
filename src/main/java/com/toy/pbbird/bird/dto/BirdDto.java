@@ -36,6 +36,7 @@ public class BirdDto {
         private Long id;
         private String uid;
         private String birdName;
+        private Double hourly;
 
         public static Res of(Bird bird) {
 
@@ -43,6 +44,7 @@ public class BirdDto {
                     .id(bird.getId())
                     .uid(bird.getUid())
                     .birdName(bird.getBirdName())
+                    .hourly(bird.getHourly())
                     .build();
         }
 
